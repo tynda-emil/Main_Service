@@ -37,4 +37,8 @@ public class Album {
     public Artist getArtist() {
         return artist;
     }
+
+    public Long getId() {
+        return id;
+    }
 }

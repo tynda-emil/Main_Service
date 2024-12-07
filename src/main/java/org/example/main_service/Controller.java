@@ -2,6 +2,7 @@ package org.example.main_service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.main_service.DTO.AlbumDTO;
+import org.example.main_service.DTO.ArtistDTO;
 import org.example.main_service.Entity.Album;
 import org.example.main_service.Entity.Artist;
 import org.example.main_service.Service.AlbumService;
@@ -27,16 +28,12 @@ ArtistService artistService;
     @GetMapping
     public Map<String, Object> getMusicData() {
         List<Artist> artists = artistService.getTop10VerifiedArtists();
-        List<Map<String, String>> artistDTOs = artists.stream()
-                .map(artist -> {
-                    Map<String, String> artistMap = new HashMap<>();
-                    artistMap.put("name", artist.getUsername());
-                    return artistMap;
-                })
+        List<ArtistDTO> artistDTOs = artists.stream()
+                .map(artist -> new ArtistDTO(artist.getId(), artist.getUsername()))
                 .collect(Collectors.toList());
         List<Album> albums = albumService.get10Albums();
         List<AlbumDTO> albumDTOs = albums.stream()
-                .map(album -> new AlbumDTO(album.getTitle(), album.getArtist().getUsername()))
+                .map(album -> new AlbumDTO(album.getId(), album.getTitle(), album.getArtist().getUsername()))
                 .collect(Collectors.toList());
         Map<String, Object> response = new HashMap<>();
         response.put("artists", artistDTOs);

@@ -9,13 +9,14 @@ import lombok.NoArgsConstructor;
 public class AlbumDTO {
     private String name;
     private String artist;
+    private Long id;
 
-    public AlbumDTO(String name, String artist) {
+    public AlbumDTO(Long id, String name, String artist) {
+        this.id = id;
         this.name = name;
         this.artist = artist;
     }
 
-    // Getters and setters
     public String getName() {
         return name;
     }
@@ -30,5 +31,13 @@ public class AlbumDTO {
 
     public void setArtist(String artist) {
         this.artist = artist;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }

@@ -41,6 +41,10 @@ public class Artist {
         return username;
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public void setRole(String role) {
         this.role = role;
     }
